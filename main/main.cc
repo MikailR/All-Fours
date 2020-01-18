@@ -47,6 +47,10 @@ int main() {
     game.shiftDealer();
     game.shiftDealer();
     game.shiftDealer();
+    game.shiftDealer();
+    game.shiftDealer();
+    game.shiftDealer();
+    game.shiftDealer();
     
     return 0;
 }

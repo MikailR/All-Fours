@@ -30,10 +30,14 @@ void Game::printDeck() {
 
 Game &Game::start() {
     table->getDeck().shuffle();
+    cout << "1" << endl;
     dealerIndex = firstDealer();
+    cout << "2" << endl;
 
     players.at(dealerIndex)->addDeck(table->getDeck());
+    cout << "3" << endl;
     cout << "Dealer by First Jack is: " << players.at(dealerIndex)->getName() << endl;
+    cout << "4" << endl;
 
     return *this;
 }
@@ -85,11 +89,9 @@ size_t Game::firstDealer() {
     // First Jack deal starts with player two
     size_t index = 1;
     Deck &deck = table->getDeck();
-
     while (true) {
         players.at(index % 4)->pushCardToHand(deck.popTopCard());
-
-        Rank rank = players.at(index % 4)->getHand().getCardAt(index / 4)->getRank();
+        Rank rank = players.at(index % 4)->getHand().getCardAt((index - 1) / 4)->getRank();
         if (rank == Jack) {
             index %= 4;
             break;
