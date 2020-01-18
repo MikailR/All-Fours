@@ -31,14 +31,10 @@ void Game::printDeck() {
 
 Game &Game::start() {
     table->getDeck().shuffle();
-    cout << "1" << endl;
     dealerIndex = firstDealer();
-    cout << "2" << endl;
 
     players.at(dealerIndex)->addDeck(table->getDeck());
-    cout << "3" << endl;
     cout << "Dealer by First Jack is: " << players.at(dealerIndex)->getName() << endl;
-    cout << "4" << endl;
 
     return *this;
 }
