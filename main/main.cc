@@ -43,15 +43,16 @@ int main() {
 
     Game game = Game(teamOneMeta, teamTwoMeta);
     game.start();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
-    game.shiftDealer();
+    game.deal();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
+    // game.shiftDealer();
     
     return 0;
 }

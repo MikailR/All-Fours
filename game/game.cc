@@ -99,4 +99,22 @@ size_t Game::firstDealer() {
 
     cleanHands();
     return index;
+    
+}
+
+Game &Game::deal() {
+    //table->getDeck().print();
+    //cout << endl;
+    int cardRecipient = dealerIndex + 1;
+    for(int i = 0; i < 6; i++) {
+        for(int j = 0; j < 4; j++) {
+            players.at(dealerIndex)->dealCardTo(*players.at(cardRecipient % 4));
+            cardRecipient++;
+        }
+    }
+    table->addKick(players.at(dealerIndex)->kickCard());
+    players.at(dealerIndex)->getHand().print();
+    table->getKick()->print();
+    //cout << endl;
+    //table->getDeck().print();
 }

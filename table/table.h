@@ -17,7 +17,7 @@ class Table {
         // Accessors
         Deck &getDeck();
         Lift &getLift();
-        const Card *getKick();
+        Card *getKick();
         Rank getKickRank();
         Suit getKickSuit();
 

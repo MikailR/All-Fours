@@ -28,7 +28,7 @@ Lift &Table::getLift() {
 
 // Note that error handling is implicit
 // - a returned nullptr means that there is no kicked card
-const Card *Table::getKick() { return kick; }
+Card *Table::getKick() { return kick; }
 
 Rank Table::getKickRank() {
     // TODO: Create custom Exception Classes
