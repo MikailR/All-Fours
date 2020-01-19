@@ -117,4 +117,6 @@ Game &Game::deal() {
     table->getKick()->print();
     //cout << endl;
     //table->getDeck().print();
+
+    return *this;
 }
