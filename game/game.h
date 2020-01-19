@@ -26,7 +26,7 @@ class Game {
         Game &start();
         Game &end();
 
-        Game &deal();
+        Game &deal(bool = false);
         Game &shiftDealer();
         Game &cleanAll();
 };

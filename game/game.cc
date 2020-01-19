@@ -44,6 +44,48 @@ Game &Game::end() {
     return *this;
 }
 
+Game &Game::deal(bool beg) {
+    int handSize = 6;
+    Suit oldTrump;
+    if (beg) {
+        handSize = 3;
+        oldTrump = table->getKick()->getSuit();
+        table->getDeck().pushBottomCard(table->removeKick());
+    }
+    
+    if (table->getDeck().size() <= 12) {
+        table->addKick(players.at(dealerIndex)->kickCard());
+        table->getKick()->print();
+        if (oldTrump == table->getKick()->getSuit()) {
+            cleanAll();
+            cout << "Deck Finished" << endl;
+            deal();
+            cout << "2nd Round of Dealing" << endl;
+        }
+        return *this;
+    }
+
+    int cardRecipient = dealerIndex + 1;
+    for(int i = 0; i < handSize; i++) {
+        for(int j = 0; j < 4; j++) {
+            players.at(dealerIndex)->dealCardTo(*players.at(cardRecipient % 4));
+            cardRecipient++;
+        }
+    }
+    table->addKick(players.at(dealerIndex)->kickCard());
+
+    players.at(dealerIndex)->getHand().print();
+    table->getKick()->print();
+
+    if (beg) {
+        if (oldTrump == table->getKick()->getSuit()) {
+            deal(true);
+        }
+    }
+
+    return *this;
+}
+
 Game &Game::shiftDealer() {
     size_t lastDealerIndex = dealerIndex;
     ++dealerIndex;
@@ -100,23 +142,4 @@ size_t Game::firstDealer() {
     cleanHands();
     return index;
     
-}
-
-Game &Game::deal() {
-    //table->getDeck().print();
-    //cout << endl;
-    int cardRecipient = dealerIndex + 1;
-    for(int i = 0; i < 6; i++) {
-        for(int j = 0; j < 4; j++) {
-            players.at(dealerIndex)->dealCardTo(*players.at(cardRecipient % 4));
-            cardRecipient++;
-        }
-    }
-    table->addKick(players.at(dealerIndex)->kickCard());
-    players.at(dealerIndex)->getHand().print();
-    table->getKick()->print();
-    //cout << endl;
-    //table->getDeck().print();
-
-    return *this;
 }
