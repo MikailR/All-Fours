@@ -1,5 +1,6 @@
 #include <iostream>
 #include <tuple>
+#include <cctype>
 #include "game.h"
 
 using namespace std;
@@ -76,6 +77,16 @@ Game &Game::deal(bool beg) {
 
     players.at(dealerIndex)->getHand().print();
     table->getKick()->print();
+
+    if (!beg) {
+        char beggarChoice;
+        cout << "Does " << players.at((dealerIndex + 1) % 4)->getName() << " want to beg? (Y/N)" << endl;
+        cin >> beggarChoice;
+        
+        if (toupper(beggarChoice) == 'Y') {
+            deal(true);
+        }
+    }
 
     if (beg) {
         if (oldTrump == table->getKick()->getSuit()) {

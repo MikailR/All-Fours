@@ -44,7 +44,6 @@ int main() {
     Game game = Game(teamOneMeta, teamTwoMeta);
     game.start();
     game.deal();
-    game.deal(true);
     
     return 0;
 }
